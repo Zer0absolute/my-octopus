@@ -24,13 +24,13 @@ import {
 import { CreditCard, LogOut, Settings, User } from "lucide-react";
 import { Session } from "next-auth";
 import { LogoutButton } from "./LogoutButton";
+import Link from "next/link";
 
 export type LoggedInButtonProps = {
   user: Session["user"];
 };
 
 export const LoggedInButton = (props: LoggedInButtonProps) => {
-
   return (
     <DropdownMenu>
       <AlertDialog>
@@ -55,10 +55,12 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </DropdownMenuItem>
+            <Link href={"/account"}>
+              <DropdownMenuItem>
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>
               <CreditCard className="mr-2 h-4 w-4" />
               <span>Billing</span>
@@ -77,22 +79,22 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
         <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>
-                  <LogOut className="mr-2 h-4 w-4 inline-flex" />
-                  <span>Log out</span>
-                </AlertDialogTitle>
-                <AlertDescription>
-                  Are you sure you want to logout ?
-                </AlertDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel asChild>
-                  <Button variant={"secondary"}>Cancel</Button>
-                </AlertDialogCancel>
-                <LogoutButton />
-              </AlertDialogFooter>
-            </AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              <LogOut className="mr-2 h-4 w-4 inline-flex" />
+              <span>Log out</span>
+            </AlertDialogTitle>
+            <AlertDescription>
+              Are you sure you want to logout ?
+            </AlertDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel asChild>
+              <Button variant={"secondary"}>Cancel</Button>
+            </AlertDialogCancel>
+            <LogoutButton />
+          </AlertDialogFooter>
+        </AlertDialogContent>
       </AlertDialog>
     </DropdownMenu>
   );
