@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/table";
 import { Typography } from "@/components/ui/Typography";
 import { getRequiredAuthSession } from "@/lib/auth";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
 export default async function CoursesPage() {
