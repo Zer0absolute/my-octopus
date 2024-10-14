@@ -21,7 +21,7 @@ import Link from "next/link";
 
 export default async function CoursesPage() {
   const session = await getRequiredAuthSession();
-  
+
   const courses = await prisma.course.findMany({
     where: {
       creatorId: session.user.id,
@@ -38,12 +38,14 @@ export default async function CoursesPage() {
           <CardContent className="mt-4">
             <Table>
               <TableHeader>
-                <TableHead>Image</TableHead>
-                <TableHead>Name</TableHead>
+                <TableRow>
+                  <TableHead>Image</TableHead>
+                  <TableHead>Name</TableHead>
+                </TableRow>
               </TableHeader>
               <TableBody>
                 {courses.map((course) => (
-                  <TableRow>
+                  <TableRow key={course.id}>
                     <TableCell>
                       <Avatar className="rounded">
                         <AvatarFallback>{course.name[0]}</AvatarFallback>
